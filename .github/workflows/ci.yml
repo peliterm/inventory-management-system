@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  linux-gcc:
+    name: Linux / g++ 13 / C++17
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the program and the test suite
+        run: make
+
+      - name: Run the test suite
+        run: make test
+
+      - name: Fail on any compiler warning
+        run: |
+          make clean
+          make all run_tests CXXFLAGS="-std=c++17 -Wall -Wextra -Wpedantic -Werror -O2"
+
+  linux-sanitizers:
+    name: Linux / AddressSanitizer + UndefinedBehaviorSanitizer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the tests with sanitizers enabled
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Wpedantic -g -O1 \
+              -fsanitize=address,undefined -fno-omit-frame-pointer \
+              -Isrc src/Date.cpp src/CSVUtil.cpp src/ChartUtil.cpp \
+                     src/Product.cpp src/Supplier.cpp src/Order.cpp \
+                     src/User.cpp src/Inventory.cpp src/tests.cpp \
+              -o sanitized_tests
+
+      - name: Run the test suite under the sanitizers
+        env:
+          UBSAN_OPTIONS: print_stacktrace=1:halt_on_error=1
+          ASAN_OPTIONS: detect_leaks=1
+        run: ./sanitized_tests
+
+  windows-msvc:
+    name: Windows / MSVC / Visual Studio solution
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build the solution, Release x64
+        run: msbuild InventorySystem.sln /p:Configuration=Release /p:Platform=x64 /m
+
+      - name: Run the test suite
+        run: .\build\Release\InventoryTests.exe
+
+      - name: Confirm the program starts and loads its data files
+        shell: pwsh
+        run: |
+          "admin`nadmin123`n0`n" | .\build\Release\InventorySystem.exe | Select-String -Pattern "7 product record|Welcome, Default Administrator"

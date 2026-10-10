@@ -1,0 +1,4 @@
+supplierID,supplierName,contactInfo,suppliedProducts
+S001,Acme Industrial,sales@acme.example,P001;P002;P003;P900
+S002,Borealis Metals,orders@borealis.example,P004;P005
+S003,"Hartley, Finch & Co",info@hartley.example,P006;P007

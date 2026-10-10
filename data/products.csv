@@ -1,0 +1,8 @@
+productID,name,category,quantity,price,supplierID,reorderLevel
+P001,Steel Bolt M8,Fasteners,420,0.7500,S001,100
+P002,Hex Nut M8,Fasteners,38,0.3000,S001,120
+P003,Flat Washer M8,Fasteners,860,0.1200,S001,200
+P004,Alloy Bracket,Brackets,24,14.9500,S002,10
+P005,Steel Angle 2in,Brackets,7,22.4000,S002,12
+P006,Hydraulic Seal,Seals,112,8.6000,S003,40
+P007,"O-Ring, Nitrile",Seals,15,1.8500,S003,50

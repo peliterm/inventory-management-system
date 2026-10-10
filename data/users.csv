@@ -1,0 +1,4 @@
+username,fullName,role,passwordHash
+admin,Default Administrator,ADMIN,7c6d405becc46029
+mpelitera,Michael Pelitera,MANAGER,1e47daa6d38cbfa0
+clerk1,Dana Ortiz,CLERK,956cbbf670172ed0

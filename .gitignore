@@ -1,0 +1,27 @@
+# Build output
+inventory
+run_tests
+sanitized_tests
+build/
+*.o
+*.obj
+*.exe
+*.pdb
+*.ilk
+
+# Visual Studio
+.vs/
+x64/
+Debug/
+Release/
+*.user
+*.suo
+
+# Temporary files written by the test suite
+test_*.csv
+
+# Editor and OS noise
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
