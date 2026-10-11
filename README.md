@@ -3,6 +3,7 @@
 [![CI](https://github.com/peliterm/inventory-management-system/actions/workflows/ci.yml/badge.svg)](https://github.com/peliterm/inventory-management-system/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Standard](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](https://en.cppreference.com/w/cpp/17)
+**[Watch the demonstration video](https://github.com/peliterm/inventory-management-system/releases/tag/v1.0)** (10 minutes)
 
 A console-based inventory management system in C++17, built with the standard
 library and nothing else. It tracks products, suppliers, and orders for a small
